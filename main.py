@@ -59,13 +59,13 @@ while True:
                 f"\nProfit {arb.res['profit_amount']/(10 ** arb.res['repay_token'].decimals):.2f} {arb.res['repay_token'].symbol} (${arb_profit_usd:.2f})\n" \
             )
 
-            if chain.id == 1:
-                last_base_fee = chain.base_fee                        
-                last_priority_fee = web3.eth.max_priority_fee
-            else:
+            if chain.id == 1337: ##forked dev network
                 last_base_fee = 10*(10**9)
                 last_priority_fee = cfg.PRIORITY_FEE
-            
+            else:                ##live network
+                last_base_fee = chain.base_fee
+                last_priority_fee = web3.eth.max_priority_fee
+
             borrow_pool_amounts = [arb.res['borrow_amount'],0] if (arb.borrow_token.address == arb.borrow_pool.token0.address) \
                 else [0, arb.res['borrow_amount']]
             swap_pool_amounts = [0, arb.res['swap_out_amount']] if (arb.borrow_token.address == arb.borrow_pool.token0.address) \
