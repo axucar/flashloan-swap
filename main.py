@@ -60,7 +60,7 @@ while True:
             )
 
             if chain.id == 1337: ##forked dev network
-                last_base_fee = 10*(10**9)
+                last_base_fee = 30*(10**9)
                 last_priority_fee = cfg.PRIORITY_FEE
             else:                ##live network
                 last_base_fee = chain.base_fee
